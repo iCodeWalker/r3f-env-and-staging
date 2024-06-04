@@ -1,8 +1,9 @@
 import { useFrame } from '@react-three/fiber'
-import { OrbitControls, useHelper, BakeShadows } from '@react-three/drei'
+import { OrbitControls, useHelper, BakeShadows, SoftShadows } from '@react-three/drei'
 import { useRef } from 'react'
 import { Perf } from 'r3f-perf'
 import * as THREE from "three";
+
 
 export default function Experience()
 {
@@ -17,7 +18,7 @@ export default function Experience()
 
     return <>
 
-        <BakeShadows />
+        {/* <BakeShadows /> */}
         {/* We can put the code anywhere, as long as the direct parent is the scene. */}
         {/* <color args={['ivory']} attach='background'/> */}
 
@@ -25,6 +26,16 @@ export default function Experience()
 
         <OrbitControls makeDefault />
         {/* Associate the directionalLight ref with the directional light */}
+
+        {/* Soft Shadows  */}
+        <SoftShadows 
+            // frustum ={3.75}
+            // size= {0.005}
+            // near={9.5}
+            // samples={17}
+            // rings= {11}
+        />
+
         <directionalLight 
             ref={directionalLight}
             castShadow={true} 

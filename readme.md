@@ -66,3 +66,15 @@
         And we can add the same with the near, far, top, right, bottom, and left properties.
 
         shadow-camera-near, shadow-camera-far, shadow-camera-top, shadow-camera-right, shadow-camera-bottom, shadow-camera-left.
+
+    4. Soft Shadows:
+        The default shadows are too sharp.
+        There are multiple ways of softening them and we are going to discover one tehnique called Percent Closer Soft Shadow (PCSS).
+
+        PCSS will make the shadow look blurry by picking the shadow map texture depending on the distance between the surface casting the shadow and the surface recieving the shadow.
+
+        The further the shadow is from the object the softer it will be.
+
+        drei has a helper named softShadows()
+
+        To make softShadows() work, we call it once at the beginning and outside of any component because this function will modify Three.js shaders directly.
