@@ -19,3 +19,21 @@
         This <color /> is equal to new THREE.Color()
 
         We can put the code anywhere, as long as the direct parent is the scene.
+
+    Lights:
+    All default Three.js lights are supported in R3F.
+
+    1. <ambientLight />
+    2. <hemisphereLight />
+    3. <directionalLight />
+    4. <pointLight />
+    5. <rectAreaLight />
+    6. <spotLight />
+
+    Light Helpers.
+    We can use useHelper from drei.
+    We need a reference to the directional light.
+
+    The first parameter to useHelper is the reference to the light source and the second parameter is the helper class we want to use from Three.js
+
+    So we need to get access of the DirectionalLightHelper class from THREE.js
