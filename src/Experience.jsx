@@ -14,6 +14,9 @@ export default function Experience()
 
     return <>
 
+        {/* We can put the code anywhere, as long as the direct parent is the scene. */}
+        {/* <color args={['ivory']} attach='background'/> */}
+
         <Perf position="top-left" />
 
         <OrbitControls makeDefault />
