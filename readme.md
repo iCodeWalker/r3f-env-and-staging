@@ -78,3 +78,5 @@
         drei has a helper named softShadows()
 
         To make softShadows() work, we call it once at the beginning and outside of any component because this function will modify Three.js shaders directly.
+
+    5. Accumulative Shadows:

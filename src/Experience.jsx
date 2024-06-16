@@ -48,8 +48,6 @@ export default function Experience()
             shadow-camera-right={5}
             shadow-camera-bottom={-5}
             shadow-camera-left={-5}
-
-
         />
         <ambientLight intensity={ 0.5 } />
 
