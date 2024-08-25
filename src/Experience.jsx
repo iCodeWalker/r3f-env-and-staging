@@ -8,6 +8,8 @@ import * as THREE from "three";
 export default function Experience()
 {
     const cube = useRef();
+
+    // For using light helpers
     const directionalLight = useRef();
     useHelper(directionalLight, THREE.DirectionalLightHelper, 1)
     

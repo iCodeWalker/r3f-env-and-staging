@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(document.querySelector('#root'))
 //     gl.setClearColor('#ff0000',0.7)
 // }
 
-// With scene
+// With scene (using ) WebGL renderer.
 const created = ({scene}) => {
     scene.background = new THREE.Color('#ff0000')
 }
@@ -32,7 +32,8 @@ root.render(
         } }
         // onCreated={created}
     >
-        <color args={['ivory']} attach='background'/>
+         {/* We can put this code any Where, as long as the direct parent is the scene  Which is still the case if We put this in the Experience component   */}
+        <color args={['grey']} attach='background'/>
         <Experience />
     </Canvas>
 )

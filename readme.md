@@ -1,6 +1,10 @@
 # R3F Environments
 
-    Background Color:
+    Till now we have only one directional light and one ambient light.
+    we will discover many environment features available like more lights, shadows, environment maps, helpers and some new features.
+
+    Multiple ways of setting Background Color:
+
     1. With CSS:
         The default background color is transparent. We can change the color directly in the css.
 
@@ -20,7 +24,8 @@
 
         We can put the code anywhere, as long as the direct parent is the scene.
 
-    Lights:
+## Lights:
+
     All default Three.js lights are supported in R3F.
 
     1. <ambientLight />
@@ -31,14 +36,16 @@
     6. <spotLight />
 
     Light Helpers.
-    We can use useHelper from drei.
-    We need a reference to the directional light.
+        We can use useHelper from drei.
+        We need a reference to the directional light.
 
-    The first parameter to useHelper is the reference to the light source and the second parameter is the helper class we want to use from Three.js
+        The first parameter to useHelper is the reference to the light source and the second parameter is the helper class we want to use from Three.js
 
-    So we need to get access of the DirectionalLightHelper class from THREE.js
+        So we need to get access of the DirectionalLightHelper class from THREE.js
 
-    Shadows:
+        Note  useHelper is not just for the light, as We can use it for camera also With CameaHelper.
+
+## Shadows:
 
     1. Default Shadow
         Add shadows attribute to the canvas.
