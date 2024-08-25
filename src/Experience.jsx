@@ -19,7 +19,8 @@ export default function Experience()
     })
 
     return <>
-
+{/* 
+        If we have a static scene in which none of the geometries arew moving or animating than we can use shadow baking. */}
         {/* <BakeShadows /> */}
         {/* We can put the code anywhere, as long as the direct parent is the scene. */}
         {/* <color args={['ivory']} attach='background'/> */}
@@ -44,12 +45,18 @@ export default function Experience()
             position={ [ 1, 2, 3 ] } 
             intensity={ 1.5 } 
             shadow-mapSize={[1024, 1024]}
+            // Near and far value should be selected properly as it can cut the shadows if not properly.
             shadow-camera-near={1}
             shadow-camera-far={15}
             shadow-camera-top={5}
             shadow-camera-right={5}
             shadow-camera-bottom={-5}
             shadow-camera-left={-5}
+            // This will create a shadow that will cover half of the cube and sphere, i.e only half sphere and cube will form the shadow
+            // shadow-camera-top={2}
+            // shadow-camera-right={2}
+            // shadow-camera-bottom={-2}
+            // shadow-camera-left={-2}
         />
         <ambientLight intensity={ 0.5 } />
 
