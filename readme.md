@@ -143,3 +143,33 @@
 
         Accumulated shadow is not great for fast animated objects.
         Accumulated shadow is good for static and slow moving objects.
+
+    6. Contact Shadows :
+
+        Shadows that are casted beneath the objects.
+
+        ContactShadows doesn't rely on the default shadow system of the Three.js
+        Deactive the shadows on the <canvas>
+
+        Comment the AccumulativeShadow.
+
+        ContactShadow works without light and only on a plane.
+
+        ContactShadows will render the whole scene a bit like how the directional light does, the shadow will be placed on the floor and rendered from below.
+
+        It will blur the shadow map to make it look better.
+
+        attributes:
+        position : To set the position of the shadow.
+        scale : To set the scale (width-length) of the shadow.
+        resolution : To set the resolution of the shadow. Low values can blur the scene sometimes.
+        far : Shadows of how much far objects will be rendered.
+        color, opacity, blur.
+
+        If our scene is static we can bake the shadow by setting the frames attribute on the <ContactShadow> to 1. So it renders only on first frame.
+
+        Contact Shadows looks good, but it has limitations.
+        1. The shadows always comes from the front of the plane (+ y in our case)
+        2. It's not physically accurate.
+        3. It blurs the shadow regardless of the distance.
+        4. It pulls quite a lot on the performance.

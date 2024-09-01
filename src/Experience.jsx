@@ -1,8 +1,9 @@
 import { useFrame } from '@react-three/fiber'
-import {RandomizedLight, AccumulativeShadows, OrbitControls, useHelper, BakeShadows, SoftShadows } from '@react-three/drei'
+import {ContactShadows, RandomizedLight, AccumulativeShadows, OrbitControls, useHelper, BakeShadows, SoftShadows } from '@react-three/drei'
 import { useRef } from 'react'
 import { Perf } from 'r3f-perf'
 import * as THREE from "three";
+import { useControls } from 'leva';
 
 // Previously we can do like this, so the softshadow gets clled only once and not on re-renders
 // softShadows({
@@ -19,7 +20,7 @@ export default function Experience()
 
     // For using light helpers
     const directionalLight = useRef();
-    // useHelper(directionalLight, THREE.DirectionalLightHelper, 1)
+    useHelper(directionalLight, THREE.DirectionalLightHelper, 1)
     
     useFrame((state, delta) =>
     {
@@ -30,6 +31,12 @@ export default function Experience()
         // cube.current.position.x = 2 + Math.sin(time);
 
         // The solution is to tell AccumulativeShadow to keep rendering the shadow with the frame attribute of the AccumulativeShadow to inifinity
+    })
+
+    const {color, opacity, blur} = useControls('contact shadows', {
+        color : '#000000',
+        opacity: { value: 0.5, min: 0, max:1},
+        blur: { value: 1, min:0, max: 10}
     })
 
     return <>
@@ -77,13 +84,18 @@ export default function Experience()
 
         {/* AccumulativeShadows */}
 
-        <AccumulativeShadows position={[0,-0.99,0]} scale={10} color='#316d39' opacity={0.8} frames={Infinity} temporal blend={100}>
-            {/* We need to provide lights to AccumulativeShadows */}
-            {/* <directionalLight position={[1,2,3]} castShadow/> */}
-            {/* For randomized light and soft shadow we use RandomizedLight */}
+        {/* <AccumulativeShadows position={[0,-0.99,0]} scale={10} color='#316d39' opacity={0.8} frames={Infinity} temporal blend={100}>
+            // ##### We need to provide lights to AccumulativeShadows
+
+            <directionalLight position={[1,2,3]} castShadow/>
+
+            // ##### For randomized light and soft shadow we use RandomizedLight
             <RandomizedLight position={[1,2,3]} amount={8} radius={1} ambient={0.5} intensity={1} bias={0.001}/>
 
-        </AccumulativeShadows>
+        </AccumulativeShadows> */}
+
+        {/* Contact Shadows  */}
+        <ContactShadows position={[0,-0.99, 0]} scale={10} resolution={512} far={5} color={color} opacity={opacity} blur={blur}/>
 
         <mesh castShadow position-x={ - 2 }>
             <sphereGeometry />

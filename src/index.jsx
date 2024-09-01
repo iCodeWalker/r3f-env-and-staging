@@ -23,7 +23,8 @@ const created = ({scene}) => {
 
 root.render(
     <Canvas
-        shadows={true} // To activate the shadoW  We have to add this attribute.
+        // comment the shadows for using contact shadows
+        // shadows={true} // To activate the shadoW  We have to add this attribute.
         camera={ {
             fov: 45,
             near: 0.1,
