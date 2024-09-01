@@ -1,5 +1,5 @@
 import { useFrame } from '@react-three/fiber'
-import {ContactShadows, RandomizedLight, AccumulativeShadows, OrbitControls, useHelper, BakeShadows, SoftShadows } from '@react-three/drei'
+import {Sky ,ContactShadows, RandomizedLight, AccumulativeShadows, OrbitControls, useHelper, BakeShadows, SoftShadows } from '@react-three/drei'
 import { useRef } from 'react'
 import { Perf } from 'r3f-perf'
 import * as THREE from "three";
@@ -39,6 +39,12 @@ export default function Experience()
         blur: { value: 1, min:0, max: 10}
     })
 
+    // Controlling the position of the sun
+
+    const {sunPosition} = useControls("sky", {
+        sunPosition : {value: [1,2,3]} 
+    })
+
     return <>
 {/* 
         If we have a static scene in which none of the geometries arew moving or animating than we can use shadow baking. */}
@@ -64,7 +70,10 @@ export default function Experience()
         <directionalLight 
             ref={directionalLight}
             castShadow={true} 
-            position={ [ 1, 2, 3 ] } 
+            // position={ [ 1, 2, 3 ] }
+            // To move directional light on moving the position of the sun 
+            position={ sunPosition} 
+
             intensity={ 1.5 } 
             shadow-mapSize={[1024, 1024]}
             // Near and far value should be selected properly as it can cut the shadows if not properly.
@@ -96,6 +105,9 @@ export default function Experience()
 
         {/* Contact Shadows  */}
         <ContactShadows position={[0,-0.99, 0]} scale={10} resolution={512} far={5} color={color} opacity={opacity} blur={blur}/>
+
+        {/* Sky */}
+        <Sky sunPosition={sunPosition}/>
 
         <mesh castShadow position-x={ - 2 }>
             <sphereGeometry />

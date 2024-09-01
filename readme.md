@@ -173,3 +173,8 @@
         2. It's not physically accurate.
         3. It blurs the shadow regardless of the distance.
         4. It pulls quite a lot on the performance.
+
+## Sky :
+
+    Import Sky from drei.
+    Add Anywhere in the JSX.
