@@ -92,7 +92,7 @@
 
         The default shadows are too sharp.
 
-        There are multiple ways of softening them and we are going to discover one tehnique called Percent Closer Soft Shadow (PCSS).
+        There are multiple ways of softening them and we are going to discover one technique called Percent Closer Soft Shadow (PCSS).
 
         PCSS will make the shadow look blurry by picking the shadow map texture depending on the distance between the surface casting the shadow and the surface recieving the shadow.
 
@@ -101,5 +101,7 @@
         drei has a helper named softShadows()
 
         To make softShadows() work, we call it once at the beginning and outside of any component because this function will modify Three.js shaders directly.
+
+        previously : we can't add to gui as soft shadows are used directly in the compile shaders, it trigger the re-compling of ll the materials shaders.
 
     5. Accumulative Shadows:

@@ -4,6 +4,14 @@ import { useRef } from 'react'
 import { Perf } from 'r3f-perf'
 import * as THREE from "three";
 
+// Previously we can do like this, so the softshadow gets clled only once and not on re-renders
+// softShadows({
+//     frustum : 3.75,
+//     size: 0.005,
+//     near:9.5,
+//     samples : 17,
+//     rings : 11
+// })
 
 export default function Experience()
 {
@@ -21,6 +29,7 @@ export default function Experience()
     return <>
 {/* 
         If we have a static scene in which none of the geometries arew moving or animating than we can use shadow baking. */}
+        {/* The shows will stop moving in our scene if we use bake shadow */}
         {/* <BakeShadows /> */}
         {/* We can put the code anywhere, as long as the direct parent is the scene. */}
         {/* <color args={['ivory']} attach='background'/> */}
