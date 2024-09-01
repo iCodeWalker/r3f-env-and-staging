@@ -1,5 +1,5 @@
 import { useFrame } from '@react-three/fiber'
-import { OrbitControls, useHelper, BakeShadows, SoftShadows } from '@react-three/drei'
+import {RandomizedLight, AccumulativeShadows, OrbitControls, useHelper, BakeShadows, SoftShadows } from '@react-three/drei'
 import { useRef } from 'react'
 import { Perf } from 'r3f-perf'
 import * as THREE from "three";
@@ -19,11 +19,17 @@ export default function Experience()
 
     // For using light helpers
     const directionalLight = useRef();
-    useHelper(directionalLight, THREE.DirectionalLightHelper, 1)
+    // useHelper(directionalLight, THREE.DirectionalLightHelper, 1)
     
     useFrame((state, delta) =>
     {
         cube.current.rotation.y += delta * 0.2
+
+        // For moving the accumulated shadow
+        // const time = state.clock.elapsedTime;
+        // cube.current.position.x = 2 + Math.sin(time);
+
+        // The solution is to tell AccumulativeShadow to keep rendering the shadow with the frame attribute of the AccumulativeShadow to inifinity
     })
 
     return <>
@@ -40,13 +46,13 @@ export default function Experience()
         {/* Associate the directionalLight ref with the directional light */}
 
         {/* Soft Shadows  */}
-        <SoftShadows 
+        {/* <SoftShadows 
             // frustum ={3.75}
             // size= {0.005}
             // near={9.5}
             // samples={17}
             // rings= {11}
-        />
+        /> */}
 
         <directionalLight 
             ref={directionalLight}
@@ -69,6 +75,16 @@ export default function Experience()
         />
         <ambientLight intensity={ 0.5 } />
 
+        {/* AccumulativeShadows */}
+
+        <AccumulativeShadows position={[0,-0.99,0]} scale={10} color='#316d39' opacity={0.8} frames={Infinity} temporal blend={100}>
+            {/* We need to provide lights to AccumulativeShadows */}
+            {/* <directionalLight position={[1,2,3]} castShadow/> */}
+            {/* For randomized light and soft shadow we use RandomizedLight */}
+            <RandomizedLight position={[1,2,3]} amount={8} radius={1} ambient={0.5} intensity={1} bias={0.001}/>
+
+        </AccumulativeShadows>
+
         <mesh castShadow position-x={ - 2 }>
             <sphereGeometry />
             <meshStandardMaterial color="orange" />
@@ -78,8 +94,16 @@ export default function Experience()
             <boxGeometry />
             <meshStandardMaterial color="mediumpurple" />
         </mesh>
-
+{/* 
         <mesh receiveShadow position-y={ - 1 } rotation-x={ - Math.PI * 0.5 } scale={ 10 }>
+            <planeGeometry />
+            <meshStandardMaterial color="greenyellow" />
+        </mesh> */}
+
+        {/* To use AccumulativeShadows we have to remove the shadow from the mesh, as AccumulativeShadows is itself an object : remove receiveShadow */}
+
+        {/* AccumulativeShaodows */}
+        <mesh position-y={ - 1 } rotation-x={ - Math.PI * 0.5 } scale={ 10 }>
             <planeGeometry />
             <meshStandardMaterial color="greenyellow" />
         </mesh>

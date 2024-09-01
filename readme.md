@@ -105,3 +105,41 @@
         previously : we can't add to gui as soft shadows are used directly in the compile shaders, it trigger the re-compling of ll the materials shaders.
 
     5. Accumulative Shadows:
+
+        Accumulative shodows will accumulate multiple shadow renders, and we are going to move the light randomly before each render. The shadow will be composed of multiple renders from various angles, making it look sodt and very realistic.
+
+        We will generate multiple shadow renders for generating a single shadow.
+
+        The AccumulativeShadows can be rendered on a plane only.
+
+        Since the AccumulativeShadows on its own. We should deactivate the shadows on the <mesh> correspoding to the floor.
+
+        Add AccumulativeShadows after  DirectionalLight.
+
+        AccumulativeShadows starts from the origin of the scene,so we have to move it a bit, ex: right above the floor. And not on the floor to avoid z-index fighting between them.
+
+        Default scale of AccumulativeShadows is 10 units,but if we want to have bigger or smaller shadows, we can use sacle attribute.
+
+        We need to provide light to AccumulativeShadows, it won't take light from the scene. Use position and castShadow attribute for the directional light.
+
+        The AccumulativeShadows is doing a lot of shadow renders but always from the same directional light at the same exact point that's why we get a dark constant shadow,
+        We need to move it randomly on each frame.
+        To do this we are going to use RandomizedLight.
+
+        Add RandomizedLight instead of directionalLight.
+
+        Atrributes for AccumulativeShadows
+        color : color of shadow
+        opacity : opacity of the shadow
+        frames : How many shadow renders to do. Control the number of renders on the first frame. Number must be choosen  wisely as it may freeze the screen. As most effect on mac.
+        temporal : spread the renders across multiple frames or time. We can prevent this freeze using temporal
+
+        The shadow dosen't move according to the cude.
+        To move the shadow we can use the useFrame hook and can take use of clock and elapsedTime varibales to move the shadow.
+
+        The solution is to tell AccumulativeShadow to keep rendering the shadow with the frame attribute of the AccumulativeShadow to inifinity.
+
+        When using inifinite frame, AccumulativeShadow is only blending the last 20 shadow renders, set the blend attribute to 100.
+
+        Accumulated shadow is not great for fast animated objects.
+        Accumulated shadow is good for static and slow moving objects.
