@@ -199,3 +199,5 @@
         Note : Drei created "presets" that will take the files directly from the Poly Haven. So we don't even have to download the file for having environment map.
 
         Create a mesh inside the environment to have custom environment side for lighting and behaviour.
+
+        We can use LightFormer instead of mesh to have better color range for lighting the scene.

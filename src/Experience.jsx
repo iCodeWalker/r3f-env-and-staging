@@ -9,6 +9,7 @@ import {
   useHelper,
   BakeShadows,
   SoftShadows,
+  Lightformer,
 } from "@react-three/drei";
 import { useRef } from "react";
 import { Perf } from "r3f-perf";
@@ -87,11 +88,12 @@ export default function Experience() {
         // ###### Presets
         preset="sunset"
       >
-        {/* <color args={['#000000']} attach="background"/> */}
-        <mesh position-z={-5} scale={10}>
+        <color args={["#000000"]} attach="background" />
+        <Lightformer position-z={-5} scale={10} color="red" intensity={10} />
+        {/* <mesh position-z={-5} scale={10}>
           <planeGeometry />
-          <meshStandardMaterial color="red" />
-        </mesh>
+          <meshStandardMaterial color={[1, 0, 0]} />
+        </mesh> */}
       </Environment>
 
       <Perf position="top-left" />
