@@ -193,4 +193,9 @@
     First we will use the traditional method of 6 textures.
         1. Add the Environment to the JSX and set the files attribute to an array of textures.
         2. The only light in scene is from the environment map, so we have to set the intensity of the light to have more light in the scene.
-        3. We have to set 'envMapIntensity' on every mesh in the scene.
+        3. We have to set 'envMapIntensity' on every mesh in the scene (meshMaterials)
+        4. To add background just add the background attribute.
+
+        Note : Drei created "presets" that will take the files directly from the Poly Haven. So we don't even have to download the file for having environment map.
+
+        Create a mesh inside the environment to have custom environment side for lighting and behaviour.
