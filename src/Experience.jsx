@@ -1,5 +1,5 @@
 import { useFrame } from '@react-three/fiber'
-import {Sky ,ContactShadows, RandomizedLight, AccumulativeShadows, OrbitControls, useHelper, BakeShadows, SoftShadows } from '@react-three/drei'
+import {Environment, Sky ,ContactShadows, RandomizedLight, AccumulativeShadows, OrbitControls, useHelper, BakeShadows, SoftShadows } from '@react-three/drei'
 import { useRef } from 'react'
 import { Perf } from 'r3f-perf'
 import * as THREE from "three";
@@ -53,6 +53,16 @@ export default function Experience()
         {/* We can put the code anywhere, as long as the direct parent is the scene. */}
         {/* <color args={['ivory']} attach='background'/> */}
 
+        {/* Environment */}
+        <Environment files={[
+            './environmentMaps/2/px.jpg',
+            './environmentMaps/2/nx.jpg',
+            './environmentMaps/2/py.jpg',
+            './environmentMaps/2/ny.jpg',
+            './environmentMaps/2/pz.jpg',
+            './environmentMaps/2/nx.jpg',
+        ]}/>
+
         <Perf position="top-left" />
 
         <OrbitControls makeDefault />
@@ -67,7 +77,7 @@ export default function Experience()
             // rings= {11}
         /> */}
 
-        <directionalLight 
+        {/* <directionalLight 
             ref={directionalLight}
             castShadow={true} 
             // position={ [ 1, 2, 3 ] }
@@ -88,8 +98,8 @@ export default function Experience()
             // shadow-camera-right={2}
             // shadow-camera-bottom={-2}
             // shadow-camera-left={-2}
-        />
-        <ambientLight intensity={ 0.5 } />
+        /> */}
+        {/* <ambientLight intensity={ 0.5 } /> */}
 
         {/* AccumulativeShadows */}
 
@@ -107,7 +117,7 @@ export default function Experience()
         <ContactShadows position={[0,-0.99, 0]} scale={10} resolution={512} far={5} color={color} opacity={opacity} blur={blur}/>
 
         {/* Sky */}
-        <Sky sunPosition={sunPosition}/>
+        {/* <Sky sunPosition={sunPosition}/> */}
 
         <mesh castShadow position-x={ - 2 }>
             <sphereGeometry />

@@ -178,3 +178,19 @@
 
     Import Sky from drei.
     Add Anywhere in the JSX.
+
+## Environment Map
+
+    In previous three.js we implemented environment maps made out of 6 textures, but we can use HDRI textures.
+    It's like a 360 degree photo where the pixel data goes beyond the traditional color range.
+
+    drei made the process easier with the environment helper.
+
+    The environment scene can be used to light the scene.
+
+    From our current code comment <directinalLight>, <ambientLight> and <sky> to avoid conflicts.
+
+    First we will use the traditional method of 6 textures.
+        1. Add the Environment to the JSX and set the files attribute to an array of textures.
+        2. The only light in scene is from the environment map, so we have to set the intensity of the light to have more light in the scene.
+        3. We have to set 'envMapIntensity' on every mesh in the scene.
