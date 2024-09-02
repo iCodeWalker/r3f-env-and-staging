@@ -201,3 +201,9 @@
         Create a mesh inside the environment to have custom environment side for lighting and behaviour.
 
         We can use LightFormer instead of mesh to have better color range for lighting the scene.
+
+## Ground
+
+    The projection of the env map will be like as if the floor is underneath the objects.
+
+    We cannot have both background and ground. We have to remove one.

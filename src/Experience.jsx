@@ -55,11 +55,16 @@ export default function Experience() {
   });
 
   // Controlling the envMapIntensity of the mesh for the the Environment map
-  const { envMapIntensity } = useControls("environment map", {
-    envMapIntensity: { value: 3.5, min: 1, max: 12 },
-  });
+  const { envMapIntensity, envMapHeight, envMapRadius, envMapScale } =
+    useControls("environment map", {
+      envMapIntensity: { value: 3.5, min: 1, max: 12 },
+      envMapHeight: { value: 7, min: 1, max: 100 },
+      envMapRadius: { value: 28, min: 10, max: 1000 },
+      envMapScale: { value: 100, min: 10, max: 1000 },
+    });
 
   console.log(envMapIntensity, "envMapIntensity");
+
   return (
     <>
       {/* 
@@ -71,7 +76,8 @@ export default function Experience() {
 
       {/* Environment */}
       <Environment
-        background
+        // Comment to have ground
+        // background
         // ##### For 6 photos that makes the environment cube.
 
         // files={[
@@ -87,6 +93,14 @@ export default function Experience() {
         // files='./environmentMaps/the_sky_is_on_fire_2k.hdr'
         // ###### Presets
         preset="sunset"
+        ground={{
+          //   height: 7,
+          //   radius: 28,
+          //   scale: 100,
+          height: { envMapHeight },
+          radius: { envMapRadius },
+          scale: { envMapScale },
+        }}
       >
         <color args={["#000000"]} attach="background" />
         <Lightformer position-z={-5} scale={10} color="red" intensity={10} />
@@ -160,7 +174,7 @@ export default function Experience() {
       {/* Sky */}
       {/* <Sky sunPosition={sunPosition}/> */}
 
-      <mesh castShadow position-x={-2}>
+      <mesh castShadow position-x={-2} position-y={1}>
         <sphereGeometry />
         <meshStandardMaterial
           color="orange"
@@ -168,7 +182,7 @@ export default function Experience() {
         />
       </mesh>
 
-      <mesh castShadow ref={cube} position-x={2} scale={1.5}>
+      <mesh castShadow ref={cube} position-x={2} scale={1.5} position-y={1}>
         <boxGeometry />
         <meshStandardMaterial
           color="mediumpurple"
@@ -184,13 +198,14 @@ export default function Experience() {
       {/* To use AccumulativeShadows we have to remove the shadow from the mesh, as AccumulativeShadows is itself an object : remove receiveShadow */}
 
       {/* AccumulativeShaodows */}
-      <mesh position-y={-1} rotation-x={-Math.PI * 0.5} scale={10}>
+      {/* comment floor as we don't need it in env maps */}
+      {/* <mesh position-y={0} rotation-x={-Math.PI * 0.5} scale={10}>
         <planeGeometry />
         <meshStandardMaterial
           color="greenyellow"
           envMapIntensity={envMapIntensity}
         />
-      </mesh>
+      </mesh> */}
     </>
   );
 }
