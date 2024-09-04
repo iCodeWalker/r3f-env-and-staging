@@ -207,3 +207,7 @@
     The projection of the env map will be like as if the floor is underneath the objects.
 
     We cannot have both background and ground. We have to remove one.
+
+## Stage
+
+    Stage will set an environment map, shadows, two directional lights, and center the scene.

@@ -1,5 +1,6 @@
 import { useFrame } from "@react-three/fiber";
 import {
+  Stage,
   Environment,
   Sky,
   ContactShadows,
@@ -94,12 +95,12 @@ export default function Experience() {
         // ###### Presets
         preset="sunset"
         ground={{
-          //   height: 7,
-          //   radius: 28,
-          //   scale: 100,
-          height: { envMapHeight },
-          radius: { envMapRadius },
-          scale: { envMapScale },
+          height: 7,
+          radius: 28,
+          scale: 100,
+          //   height: { envMapHeight },
+          //   radius: { envMapRadius },
+          //   scale: { envMapScale },
         }}
       >
         <color args={["#000000"]} attach="background" />
@@ -206,6 +207,25 @@ export default function Experience() {
           envMapIntensity={envMapIntensity}
         />
       </mesh> */}
+
+      {/* ################### Stage ############### */}
+      {/* <Stage environment= "sunset" preset="portrait" intensity: {2}>
+        <mesh castShadow position-x={-2} position-y={1}>
+          <sphereGeometry />
+          <meshStandardMaterial
+            color="orange"
+            envMapIntensity={envMapIntensity}
+          />
+        </mesh>
+
+        <mesh castShadow ref={cube} position-x={2} scale={1.5} position-y={1}>
+          <boxGeometry />
+          <meshStandardMaterial
+            color="mediumpurple"
+            envMapIntensity={envMapIntensity}
+          />
+        </mesh>
+      </Stage> */}
     </>
   );
 }
